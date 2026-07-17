@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Star, Flag, Leaf, MessageSquare, ChevronRight } from 'lucide-react';
 import { HubShell } from './GameShell';
 import { GAMES, type GameCategory } from './gamesData';
-import { hubHero, hubDish } from '../../assets/images/games';
+import { hubHero, hubDish, footerSign } from '../../assets/images/games';
 
 type TabKey = 'all' | GameCategory;
 
@@ -120,9 +120,7 @@ export default function GamesHub({
 
       {/* Bottom banner */}
       <div className="flex justify-center">
-        <div className="px-6 py-2 rounded-full bg-[#F5F0E4] text-[#5C5548] font-bold text-sm flex items-center gap-2">
-          <Leaf className="w-4 h-4 text-[#4E9B5D]" /> 用心學台語．生活更有趣
-        </div>
+        <img src={footerSign} alt="用心學台語．生活更有趣" className="h-14 w-auto" />
       </div>
     </HubShell>
   );
