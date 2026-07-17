@@ -70,7 +70,7 @@ const FEATURE_CARDS = [
   },
 ];
 
-export default function HomePage() {
+export default function HomePage({ onNavigateGames }: { onNavigateGames?: () => void }) {
   return (
     <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
       {/* ---------------- Top Nav ---------------- */}
@@ -89,6 +89,7 @@ export default function HomePage() {
           {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
             <button
               key={label}
+              onClick={label === '互動遊戲' ? onNavigateGames : undefined}
               className={`flex flex-col items-center gap-1 text-sm font-medium transition-colors ${
                 active ? 'text-[#4E9B5D]' : 'text-[#8A8378] hover:text-[#4E9B5D]'
               }`}
@@ -184,7 +185,10 @@ export default function HomePage() {
                       {card.title} <span className="text-xs">🌿</span>
                     </div>
                     <p className="text-[11px] text-[#8A8378] leading-relaxed min-h-[2.2rem]">{card.desc}</p>
-                    <button className="mt-1 w-full py-2 rounded-full bg-[#4E9B5D] text-white text-xs font-bold hover:bg-[#458752] transition-colors">
+                    <button
+                      onClick={card.title === '互動遊戲' ? onNavigateGames : undefined}
+                      className="mt-1 w-full py-2 rounded-full bg-[#4E9B5D] text-white text-xs font-bold hover:bg-[#458752] transition-colors"
+                    >
                       {card.button} ▶
                     </button>
                   </div>
