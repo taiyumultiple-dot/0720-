@@ -1,16 +1,24 @@
 import { useState } from 'react';
-import { Star, Flag, Leaf, MessageSquare, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { HubShell } from './GameShell';
 import { GAMES, type GameCategory } from './gamesData';
-import { hubHero, hubDish, footerSign } from '../../assets/images/games';
+import {
+  hubHero,
+  hubDish,
+  footerSign,
+  tabIconHot,
+  tabIconSituational,
+  tabIconOutdoor,
+  tabIconLife,
+} from '../../assets/images/games';
 
 type TabKey = 'all' | GameCategory;
 
-const TABS: { key: TabKey; label: string; icon: typeof Star }[] = [
-  { key: 'all', label: '熱門推薦', icon: Star },
-  { key: 'situational', label: '情境任務', icon: Flag },
-  { key: 'outdoor', label: '戶外探索', icon: Leaf },
-  { key: 'life', label: '生活台語', icon: MessageSquare },
+const TABS: { key: TabKey; label: string; icon: string }[] = [
+  { key: 'all', label: '熱門推薦', icon: tabIconHot },
+  { key: 'situational', label: '情境任務', icon: tabIconSituational },
+  { key: 'outdoor', label: '戶外探索', icon: tabIconOutdoor },
+  { key: 'life', label: '生活台語', icon: tabIconLife },
 ];
 
 export default function GamesHub({
@@ -36,7 +44,7 @@ export default function GamesHub({
 
       {/* Tabs */}
       <div className="flex items-center gap-3 px-1 flex-wrap">
-        {TABS.map(({ key, label, icon: Icon }) => (
+        {TABS.map(({ key, label, icon }) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
@@ -46,7 +54,7 @@ export default function GamesHub({
                 : 'bg-[#F5F0E4] text-[#5C5548] hover:bg-[#EFE6D4]'
             }`}
           >
-            <Icon className="w-4 h-4" strokeWidth={2.4} />
+            <img src={icon} alt="" className="w-4 h-4 rounded-full object-cover" />
             {label}
           </button>
         ))}
