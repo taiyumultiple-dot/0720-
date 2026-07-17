@@ -147,7 +147,7 @@ export default function HomePage() {
           </aside>
 
           {/* Frog decoration below sidebar (desktop only, matches template's page-margin placement) */}
-          <div className="hidden lg:block mt-3 rounded-3xl overflow-hidden">
+          <div className="hidden lg:block mt-auto pt-3 rounded-3xl overflow-hidden">
             <img src={frogDecor} alt="" className="w-full h-auto object-cover" />
           </div>
         </div>
@@ -199,8 +199,8 @@ export default function HomePage() {
             </div>
 
             {/* Bear + lavender decoration beside the card (desktop only) */}
-            <div className="hidden md:block w-40 shrink-0 rounded-3xl overflow-hidden self-stretch">
-              <img src={bearDecor} alt="" className="w-full h-full object-cover" />
+            <div className="hidden md:block w-40 shrink-0 rounded-3xl overflow-hidden self-end">
+              <img src={bearDecor} alt="" className="w-full h-auto object-contain block" />
             </div>
           </div>
         </div>
