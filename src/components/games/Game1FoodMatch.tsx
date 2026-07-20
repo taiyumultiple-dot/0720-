@@ -121,8 +121,19 @@ export default function Game1FoodMatch({
 
   return (
     <GameShell onHome={onHome}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
+      <div className="rounded-3xl overflow-hidden shadow-sm relative">
         <img src={game1Hero} alt="第1關 老街台語美食配對" className="w-full h-auto block" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <div className="inline-block px-3 py-1 rounded-full bg-[#E4772E] text-white text-xs font-black mb-2 shadow-sm">
+            第 1 關
+          </div>
+          <h2 className="font-black text-[#5C4A2E] text-2xl md:text-4xl tracking-wide drop-shadow-sm">
+            老街台語美食配對
+          </h2>
+          <p className="text-[#8A7355] text-xs md:text-sm font-bold mt-1">
+            聽台語、認美食，完成老街尋味挑戰！
+          </p>
+        </div>
       </div>
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
