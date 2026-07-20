@@ -13,6 +13,42 @@ import {
 } from '../../assets/images/homepage';
 import { charAhui } from '../../assets/images/characters';
 
+// 簡化嘴型示意圖（依發音部位分組），p 有官方真實照片，其餘用這組簡化示意圖代替
+function MouthShapeSvg({ group }: { group: string }) {
+  const face = (
+    <>
+      <ellipse cx="50" cy="50" rx="42" ry="46" fill="#F6D2B8" />
+      <ellipse cx="30" cy="42" rx="4" ry="5" fill="#3A2E22" />
+      <ellipse cx="70" cy="42" rx="4" ry="5" fill="#3A2E22" />
+    </>
+  );
+  return (
+    <svg viewBox="0 0 100 100" className="w-full h-full">
+      {face}
+      {group === '唇音' && <rect x="34" y="66" width="32" height="6" rx="3" fill="#C1685A" />}
+      {group === '舌尖音' && (
+        <>
+          <ellipse cx="50" cy="70" rx="18" ry="10" fill="#7A362E" />
+          <rect x="40" y="66" width="20" height="6" rx="3" fill="#E8897A" />
+        </>
+      )}
+      {group === '舌根音' && (
+        <>
+          <ellipse cx="50" cy="72" rx="20" ry="13" fill="#7A362E" />
+          <ellipse cx="50" cy="66" rx="10" ry="5" fill="#E8897A" />
+        </>
+      )}
+      {group === '喉音' && <ellipse cx="50" cy="72" rx="14" ry="14" fill="#5E241D" />}
+      {group === '齒音' && (
+        <>
+          <rect x="36" y="66" width="28" height="8" rx="2" fill="#7A362E" />
+          <rect x="38" y="66" width="24" height="3" fill="white" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 // 資料來源：教育部《臺灣台語羅馬字拼音教學網》官方聲母表 https://tailo.moe.edu.tw/pin1.html
 type Row = {
   group: string;
@@ -201,7 +237,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                         </div>
                       </div>
                     )}
-                    {row.mouthImg && (
+                    {row.mouthImg ? (
                       <img
                         src={row.mouthImg}
                         alt={`${row.initial} 嘴型示意圖`}
@@ -210,6 +246,13 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                           (e.currentTarget as HTMLImageElement).style.display = 'none';
                         }}
                       />
+                    ) : (
+                      <div className="text-center">
+                        <div className="w-28 h-28 rounded-xl bg-white shadow p-2">
+                          <MouthShapeSvg group={row.group} />
+                        </div>
+                        <div className="text-[10px] text-[#8A7355] mt-1">簡化示意圖</div>
+                      </div>
                     )}
                   </div>
                 </div>
