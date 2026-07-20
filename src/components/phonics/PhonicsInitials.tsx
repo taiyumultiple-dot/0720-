@@ -241,7 +241,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                       <img
                         src={row.mouthImg}
                         alt={`${row.initial} 嘴型示意圖`}
-                        className="w-28 h-28 object-contain rounded-xl bg-white shadow p-1"
+                        className="h-28 w-auto max-w-[140px] object-contain"
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).style.display = 'none';
                         }}
