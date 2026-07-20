@@ -36,24 +36,24 @@ interface NameItem {
 }
 
 const FOODS: FoodItem[] = [
-  { id: 'baw', name: '肉圓', img: food_baw, tailo: 'gû-ùnn' },
-  { id: 'tauhue', name: '豆花', img: food_tauhue, tailo: 'tāu-huā' },
-  { id: 'bemtsuk', name: '鹹粥', img: food_bemtsuk, tailo: 'bē-ûn' },
-  { id: 'junbiann', name: '潤餅', img: food_junbiann, tailo: 'bûn-piánn' },
+  { id: 'baw', name: '肉圓', img: food_baw, tailo: 'bah-uân' },
+  { id: 'tauhue', name: '豆花', img: food_tauhue, tailo: 'tāu-hue' },
+  { id: 'bemtsuk', name: '鹹粥', img: food_bemtsuk, tailo: 'kiâm-muê' },
+  { id: 'junbiann', name: '潤餅', img: food_junbiann, tailo: 'lūn-piánn' },
   { id: 'gerpiann', name: '月餅', img: food_gerpiann, tailo: 'gōeh-piánn' },
   { id: 'tsuanntsa', name: '串炸', img: food_tsuanntsa, tailo: 'gē-chià' },
-  { id: 'uaakue', name: '碗粿', img: food_uaakue, tailo: 'guán-kuí' },
-  { id: 'tshangyupiann', name: '蔥油餅', img: food_tshangyupiann, tailo: 'chiân-phiaⁿ' },
+  { id: 'uaakue', name: '碗粿', img: food_uaakue, tailo: 'uánn-kué' },
+  { id: 'tshangyupiann', name: '蔥油餅', img: food_tshangyupiann, tailo: 'tshang-iû-piánn' },
 ];
 
 // Deliberately shown in a different order than FOODS, matching the shuffled layout of the template.
 const NAMES: NameItem[] = [
-  { id: 'junbiann', name: '潤餅', tailo: 'bûn-piánn' },
-  { id: 'bemtsuk', name: '鹹粥', tailo: 'bē-ûn' },
-  { id: 'baw', name: '肉圓', tailo: 'gû-ùnn' },
-  { id: 'tauhue', name: '豆花', tailo: 'tāu-huā' },
-  { id: 'uaakue', name: '碗粿', tailo: 'guán-kuí' },
-  { id: 'tshangyupiann', name: '蔥油餅', tailo: 'chiân-phiaⁿ' },
+  { id: 'junbiann', name: '潤餅', tailo: 'lūn-piánn' },
+  { id: 'bemtsuk', name: '鹹粥', tailo: 'kiâm-muê' },
+  { id: 'baw', name: '肉圓', tailo: 'bah-uân' },
+  { id: 'tauhue', name: '豆花', tailo: 'tāu-hue' },
+  { id: 'uaakue', name: '碗粿', tailo: 'uánn-kué' },
+  { id: 'tshangyupiann', name: '蔥油餅', tailo: 'tshang-iû-piánn' },
   { id: 'tsuanntsa', name: '串炸', tailo: 'gē-chià' },
   { id: 'gerpiann', name: '月餅', tailo: 'gōeh-piánn' },
 ];

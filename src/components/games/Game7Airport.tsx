@@ -10,7 +10,7 @@ const QUESTIONS: QuizQuestion[] = [
     options: [
       { label: '行李提領處', tailo: 'Khìnn-lí thi-líng tshù', correct: false },
       { label: '安檢口', tailo: 'An-kiám-kháu', correct: false },
-      { label: '報到櫃檯', tailo: 'Pò-tò-kuì-thô', correct: true },
+      { label: '報到櫃檯', tailo: 'Pò-tò kuī-tâi', correct: true },
       { label: '登機門口', tailo: 'Tang-ki mn̂g-kháu', correct: false },
     ],
   },
