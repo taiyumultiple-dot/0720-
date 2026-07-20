@@ -69,9 +69,9 @@ export default function GamesHub({
               <div className="self-start px-3 py-1 rounded-full bg-[#E4772E] text-white text-xs font-black mb-3">
                 01
               </div>
-              <h3 className="font-black text-[#2D2A26] text-lg mb-4">{featured.title}</h3>
+              <h3 className="font-black text-[#2D2A26] text-xl mb-4">{featured.title}</h3>
               <img src={hubDish} alt={featured.title} className="w-40 h-auto rounded-2xl mb-4" />
-              <p className="text-xs text-[#8A8378] leading-relaxed mb-4">
+              <p className="text-sm text-[#8A8378] leading-relaxed mb-4">
                 配對台語、美食名字，
                 <br />
                 完成老街美味挑戰！
@@ -98,18 +98,18 @@ export default function GamesHub({
               }`}
             >
               {rest.map((g) => (
-                <div key={g.key} className="bg-[#F5F0E4] rounded-2xl p-4 flex gap-3">
+                <div key={g.key} className="bg-[#F5F0E4] rounded-2xl p-4 flex gap-3 hover:shadow-md transition-shadow">
                   <div className="shrink-0 w-16 h-16 rounded-xl bg-[#FDFBF6] flex items-center justify-center overflow-hidden">
                     <img src={g.icon} alt="" className="w-11 h-11 object-contain" />
                   </div>
                   <div className="flex-1 min-w-0 flex flex-col">
-                    <div className="flex items-center gap-1.5 mb-0.5">
+                    <div className="flex items-center gap-1.5 mb-1">
                       <span className="px-1.5 py-0.5 rounded bg-[#4E9B5D] text-white text-[10px] font-bold">
                         {String(g.id).padStart(2, '0')}
                       </span>
-                      <span className="font-bold text-[#2D2A26] text-sm truncate">{g.title}</span>
+                      <span className="font-bold text-[#2D2A26] text-[15px] truncate">{g.title}</span>
                     </div>
-                    <p className="text-[11px] text-[#8A8378] leading-snug mb-2 line-clamp-2">{g.desc}</p>
+                    <p className="text-xs text-[#8A8378] leading-snug mb-2 line-clamp-2">{g.desc}</p>
                     <button
                       onClick={() => onSelectGame(g.key)}
                       className="mt-auto self-start px-4 py-1.5 rounded-full bg-[#E4772E] text-white text-xs font-bold hover:bg-[#CC6620] transition-colors flex items-center gap-1"
