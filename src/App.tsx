@@ -20,6 +20,7 @@ function App() {
 
   const goToGame = (key: string) => setView(key as View);
   const goHome = () => setView('home');
+  const goHub = () => setView('gamesHub');
   const goNext = (fromKey: string) => {
     const next = getNextGameKey(fromKey);
     setView(next ? (next as View) : 'gamesHub');
@@ -27,16 +28,16 @@ function App() {
 
   if (view === 'gamesHub') return <GamesHub onSelectGame={goToGame} onHome={goHome} />;
 
-  if (view === 'game1') return <Game1FoodMatch onHome={goHome} onNext={() => goNext('game1')} />;
-  if (view === 'game2') return <Game2NightMarket onHome={goHome} onNext={() => goNext('game2')} />;
-  if (view === 'game3') return <Game3BlueField onHome={goHome} onNext={() => goNext('game3')} />;
-  if (view === 'game4') return <Game4BeachHunt onHome={goHome} onNext={() => goNext('game4')} />;
-  if (view === 'game5') return <Game5TransportPuzzle onHome={goHome} onNext={() => goNext('game5')} />;
-  if (view === 'game6') return <Game6HotSpring onHome={goHome} onNext={() => goNext('game6')} />;
-  if (view === 'game7') return <Game7Airport onHome={goHome} onNext={() => goNext('game7')} />;
-  if (view === 'game8') return <Game8StoryOrder onHome={goHome} onNext={() => goNext('game8')} />;
-  if (view === 'game9') return <Game9DeerVocab onHome={goHome} onNext={() => goNext('game9')} />;
-  if (view === 'game10') return <Game10Souvenirs onHome={goHome} onNext={() => goNext('game10')} />;
+  if (view === 'game1') return <Game1FoodMatch onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game1')} />;
+  if (view === 'game2') return <Game2NightMarket onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game2')} />;
+  if (view === 'game3') return <Game3BlueField onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game3')} />;
+  if (view === 'game4') return <Game4BeachHunt onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game4')} />;
+  if (view === 'game5') return <Game5TransportPuzzle onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game5')} />;
+  if (view === 'game6') return <Game6HotSpring onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game6')} />;
+  if (view === 'game7') return <Game7Airport onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game7')} />;
+  if (view === 'game8') return <Game8StoryOrder onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game8')} />;
+  if (view === 'game9') return <Game9DeerVocab onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game9')} />;
+  if (view === 'game10') return <Game10Souvenirs onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game10')} />;
 
   return <HomePage onNavigateGames={() => setView('gamesHub')} />;
 }

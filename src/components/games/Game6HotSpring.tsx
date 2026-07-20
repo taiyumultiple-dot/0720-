@@ -45,11 +45,11 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game6HotSpring({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
+export default function Game6HotSpring({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 100);
 
   return (
-    <GameShell onHome={onHome}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game6Hero} alt="第6款 月夜溫泉對話任務" className="w-full h-auto block" />
       </div>

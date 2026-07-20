@@ -42,11 +42,11 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game7Airport({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
+export default function Game7Airport({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 90);
 
   return (
-    <GameShell onHome={onHome}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game7Hero} alt="第7款 機場台語問答" className="w-full h-auto block" />
       </div>

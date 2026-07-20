@@ -31,7 +31,7 @@ const SIDEBAR_ITEMS = [
   { icon: iconLinks, title: '相關連結', subtitle: '更多學習資源', key: 'links' },
 ];
 
-function TopNav({ onHome }: { onHome?: () => void }) {
+function TopNav({ onHome, onGamesHub }: { onHome?: () => void; onGamesHub?: () => void }) {
   return (
     <header className="flex items-center justify-between px-2 md:px-3 py-3 bg-white/60 backdrop-blur-sm">
       <div className="flex items-center cursor-pointer" onClick={onHome}>
@@ -41,10 +41,14 @@ function TopNav({ onHome }: { onHome?: () => void }) {
       <nav className="hidden md:flex items-center gap-8">
         {NAV_ITEMS.map(({ label, icon: Icon, key }) => {
           const active = key === 'games';
+          const handlers: Record<string, (() => void) | undefined> = {
+            home: onHome,
+            games: onGamesHub,
+          };
           return (
             <button
               key={key}
-              onClick={key === 'home' ? onHome : undefined}
+              onClick={handlers[key]}
               className={`flex flex-col items-center gap-1 text-sm font-medium transition-colors ${
                 active ? 'text-[#4E9B5D]' : 'text-[#8A8378] hover:text-[#4E9B5D]'
               }`}
@@ -107,10 +111,18 @@ function Sidebar() {
 }
 
 /** Full layout used by every game sub-page: nav + left sidebar + content area. */
-export function GameShell({ children, onHome }: { children: ReactNode; onHome?: () => void }) {
+export function GameShell({
+  children,
+  onHome,
+  onGamesHub,
+}: {
+  children: ReactNode;
+  onHome?: () => void;
+  onGamesHub?: () => void;
+}) {
   return (
     <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
-      <TopNav onHome={onHome} />
+      <TopNav onHome={onHome} onGamesHub={onGamesHub} />
       <div className="flex flex-col lg:flex-row gap-3 md:gap-4 flex-1">
         <Sidebar />
         <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4">{children}</div>

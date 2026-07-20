@@ -58,9 +58,11 @@ function formatTime(s: number) {
 export default function Game1FoodMatch({
   onNext,
   onHome,
+  onGamesHub,
 }: {
   onNext: () => void;
   onHome?: () => void;
+  onGamesHub?: () => void;
 }) {
   const [matched, setMatched] = useState<Set<string>>(new Set());
   const [selLeft, setSelLeft] = useState<string | null>(null);
@@ -120,7 +122,7 @@ export default function Game1FoodMatch({
   };
 
   return (
-    <GameShell onHome={onHome}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
       <div className="rounded-3xl overflow-hidden shadow-sm relative">
         <img src={game1Hero} alt="第1關 老街台語美食配對" className="w-full h-auto block" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">

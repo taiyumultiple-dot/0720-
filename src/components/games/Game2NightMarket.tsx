@@ -60,11 +60,11 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game2NightMarket({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
+export default function Game2NightMarket({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 120);
 
   return (
-    <GameShell onHome={onHome}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game2Hero} alt="第2款 夜市叫賣大挑戰" className="w-full h-auto block" />
       </div>

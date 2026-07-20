@@ -26,7 +26,7 @@ function shuffled(): Card[] {
   return arr;
 }
 
-export default function Game8StoryOrder({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
+export default function Game8StoryOrder({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
   const [pool, setPool] = useState<Card[]>(() => shuffled());
   const [slots, setSlots] = useState<(Card | null)[]>([null, null, null, null, null]);
   const [checked, setChecked] = useState<null | boolean>(null);
@@ -67,7 +67,7 @@ export default function Game8StoryOrder({ onNext, onHome }: { onNext: () => void
   const done = checked === true;
 
   return (
-    <GameShell onHome={onHome}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game8Hero} alt="第8款 老街故事排序" className="w-full h-auto block" />
       </div>
