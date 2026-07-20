@@ -70,7 +70,13 @@ const FEATURE_CARDS = [
   },
 ];
 
-export default function HomePage({ onNavigateGames }: { onNavigateGames?: () => void }) {
+export default function HomePage({
+  onNavigateGames,
+  onNavigatePhonics,
+}: {
+  onNavigateGames?: () => void;
+  onNavigatePhonics?: () => void;
+}) {
   return (
     <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
       {/* ---------------- Top Nav ---------------- */}
@@ -89,7 +95,9 @@ export default function HomePage({ onNavigateGames }: { onNavigateGames?: () => 
           {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
             <button
               key={label}
-              onClick={label === '互動遊戲' ? onNavigateGames : undefined}
+              onClick={
+                label === '互動遊戲' ? onNavigateGames : label === '拼音學習' ? onNavigatePhonics : undefined
+              }
               className={`flex flex-col items-center gap-1 text-sm font-medium transition-colors ${
                 active ? 'text-[#4E9B5D]' : 'text-[#8A8378] hover:text-[#4E9B5D]'
               }`}
@@ -186,7 +194,13 @@ export default function HomePage({ onNavigateGames }: { onNavigateGames?: () => 
                     </div>
                     <p className="text-[11px] text-[#8A8378] leading-relaxed min-h-[2.2rem]">{card.desc}</p>
                     <button
-                      onClick={card.title === '互動遊戲' ? onNavigateGames : undefined}
+                      onClick={
+                        card.title === '互動遊戲'
+                          ? onNavigateGames
+                          : card.title === '拼音學習'
+                            ? onNavigatePhonics
+                            : undefined
+                      }
                       className="mt-1 w-full py-2 rounded-full bg-[#4E9B5D] text-white text-xs font-bold hover:bg-[#458752] transition-colors"
                     >
                       {card.button} ▶

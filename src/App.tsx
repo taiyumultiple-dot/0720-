@@ -11,9 +11,10 @@ import Game7Airport from './components/games/Game7Airport';
 import Game8StoryOrder from './components/games/Game8StoryOrder';
 import Game9DeerVocab from './components/games/Game9DeerVocab';
 import Game10Souvenirs from './components/games/Game10Souvenirs';
+import PhonicsInitials from './components/phonics/PhonicsInitials';
 import { getNextGameKey } from './components/games/gamesData';
 
-type View = 'home' | 'gamesHub' | `game${number}`;
+type View = 'home' | 'gamesHub' | 'phonics' | `game${number}`;
 
 function App() {
   const [view, setView] = useState<View>('home');
@@ -27,6 +28,7 @@ function App() {
   };
 
   if (view === 'gamesHub') return <GamesHub onSelectGame={goToGame} onHome={goHome} />;
+  if (view === 'phonics') return <PhonicsInitials onHome={goHome} />;
 
   if (view === 'game1') return <Game1FoodMatch onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game1')} />;
   if (view === 'game2') return <Game2NightMarket onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game2')} />;
@@ -39,7 +41,7 @@ function App() {
   if (view === 'game9') return <Game9DeerVocab onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game9')} />;
   if (view === 'game10') return <Game10Souvenirs onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game10')} />;
 
-  return <HomePage onNavigateGames={() => setView('gamesHub')} />;
+  return <HomePage onNavigateGames={() => setView('gamesHub')} onNavigatePhonics={() => setView('phonics')} />;
 }
 
 export default App;
