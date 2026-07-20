@@ -61,9 +61,9 @@ type Row = {
 
 const ROWS: Row[] = [
   { group: '唇音', initial: 'p', bopomofo: 'ㄅ', example: 'po-lê', hanzi: '玻璃', mouthImg: 'https://tailo.moe.edu.tw/sam/sam1/2-1png/p.png' },
-  { group: '唇音', initial: 'ph', bopomofo: 'ㄆ', example: 'phú-phú', hanzi: '殕殕' },
-  { group: '唇音', initial: 'b', bopomofo: '', example: 'a-bó', hanzi: '阿母' },
-  { group: '唇音', initial: 'm', bopomofo: 'ㄇ', example: 'má-mah', hanzi: '媽媽' },
+  { group: '唇音', initial: 'ph', bopomofo: 'ㄆ', example: 'phú-phú', hanzi: '殕殕', mouthImg: 'https://tailo.moe.edu.tw/sam/sam1/2-1_ph.png' },
+  { group: '唇音', initial: 'b', bopomofo: '', example: 'a-bó', hanzi: '阿母', mouthImg: 'https://tailo.moe.edu.tw/sam/sam1/2-1_b.png' },
+  { group: '唇音', initial: 'm', bopomofo: 'ㄇ', example: 'má-mah', hanzi: '媽媽', mouthImg: 'https://tailo.moe.edu.tw/sam/sam1/2-1_m.png' },
   { group: '舌尖音', initial: 't', bopomofo: 'ㄉ', example: 'to-á', hanzi: '刀仔' },
   { group: '舌尖音', initial: 'th', bopomofo: 'ㄊ', example: 'thô-á', hanzi: '桃仔' },
   { group: '舌尖音', initial: 'n', bopomofo: 'ㄋ', example: 'niau-á', hanzi: '貓仔' },
