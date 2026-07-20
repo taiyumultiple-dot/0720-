@@ -1,23 +1,15 @@
 import { useState } from 'react';
-import { ChevronRight, Gamepad2, Star, Flag, Leaf, MessageCircle } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ChevronRight, Star, Flag, Leaf, MessageCircle } from 'lucide-react';
 import { HubShell } from './GameShell';
 import { GAMES, type GameCategory } from './gamesData';
-import bgImage from '../../assets/images/regenerated_image_1784512474999.webp';
 import {
+  hubHero,
   hubDish,
   tabIconHot,
   tabIconSituational,
   tabIconOutdoor,
   tabIconLife,
 } from '../../assets/images/games';
-import {
-  charDad,
-  charAming,
-  charAhui,
-  charMom,
-  charGrandpa,
-} from '../../assets/images/characters';
 
 type TabKey = 'all' | GameCategory;
 
@@ -44,137 +36,9 @@ export default function GamesHub({
 
   return (
     <HubShell onHome={onHome}>
-      {/* 1. Styled Hero Banner with hanging sign, titles, and 5 main characters (Matches reference image perfectly) */}
-      <div className="relative rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden border border-[#FFE7C4] shadow-md bg-[#FFFDF6]">
-        
-        {/* Real Watercolor Old Street Background Image */}
-        <img
-          src={bgImage}
-          alt="Watercolor Background"
-          className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none select-none z-0"
-          referrerPolicy="no-referrer"
-        />
-
-        {/* Soft Warm Gradient Overlay for contrast and readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDF6]/95 via-[#FCEAD4]/80 to-[#F7D2AF]/50 pointer-events-none z-0" />
-
-        {/* Watercolor Paper Texture Overlay */}
-        <div 
-          className="absolute inset-0 w-full h-full opacity-[0.09] mix-blend-multiply z-0 pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cfilter id='paper-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='4' result='noise'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23paper-noise)'/%3E%3C/svg%3E")`
-          }}
-        />
-
-        {/* Traditional Minnan Building Eave (Swallowtail roof) on the right background */}
-        <div className="absolute right-0 top-0 bottom-0 w-[55%] opacity-[0.18] pointer-events-none select-none z-0 hidden md:block">
-          <svg className="w-full h-full" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            {/* Curved swallowtail roof */}
-            <path d="M300 30 C220 50 140 50 110 20 C118 40 160 70 300 70 Z" fill="#9C4A2F" />
-            <path d="M300 70 L140 70 L140 200 L300 200 Z" fill="#C57A60" />
-            <rect x="180" y="100" width="80" height="100" fill="#E6C29E" />
-            {/* Window */}
-            <rect x="195" y="110" width="40" height="60" fill="#9C6B43" rx="2" />
-            {/* Hanging Lanterns */}
-            <line x1="160" y1="70" x2="160" y2="105" stroke="#4A3B32" strokeWidth="2" />
-            <rect x="148" y="105" width="24" height="34" rx="12" fill="#E74C3C" />
-            <rect x="152" y="101" width="16" height="4" fill="#F1C40F" />
-            <rect x="152" y="139" width="16" height="4" fill="#F1C40F" />
-          </svg>
-        </div>
-
-        {/* Left Side: Hanging Sign with Green Controller and Vines (SVG Art) */}
-        <div className="hidden lg:flex flex-col items-center select-none shrink-0 relative -top-3 z-10">
-          {/* Chains */}
-          <div className="flex gap-14 h-8">
-            <div className="w-1.5 h-full bg-gradient-to-b from-[#8A7968] to-[#4A3B32]" style={{ clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)' }} />
-            <div className="w-1.5 h-full bg-gradient-to-b from-[#8A7968] to-[#4A3B32]" style={{ clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)' }} />
-          </div>
-          {/* Hanging sign board */}
-          <div className="relative w-36 h-28 bg-[#E6C29E] rounded-2xl border-4 border-[#8B5A2B] flex flex-col items-center justify-center shadow-lg">
-            {/* Green Vines & Leaves */}
-            <div className="absolute -top-3 -left-3">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M5 25 Q15 10 30 15 Q25 30 10 35 Z" fill="#4E9B5D" />
-                <path d="M15 15 Q25 5 35 12" stroke="#2D5A37" strokeWidth="2" fill="none" />
-              </svg>
-            </div>
-            <div className="absolute -bottom-2 -right-2">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path d="M5 15 Q15 5 25 10 Q20 20 10 25 Z" fill="#3E8552" />
-              </svg>
-            </div>
-
-            {/* Inner Controller Icon */}
-            <div className="w-16 h-12 bg-[#529E3F] rounded-xl flex items-center justify-center filter drop-shadow(2px 2px 3px rgba(0,0,0,0.25))">
-              <Gamepad2 className="w-9 h-9 text-white" strokeWidth={2.5} />
-            </div>
-          </div>
-        </div>
-
-        {/* Center: Hero Title block */}
-        <div className="flex-1 text-center md:text-left relative z-10 select-none">
-          <div className="flex items-center justify-center md:justify-start gap-3 mb-2.5">
-            <h1 className="font-black text-[#3E2723] text-2xl md:text-4xl tracking-tight">
-              互動遊戲 <span className="text-[#8B5A2B] font-light">|</span> 台語學習樂園
-            </h1>
-            <span className="text-xl md:text-2xl">🍃</span>
-          </div>
-          <p className="text-sm md:text-base text-[#5C4033] font-medium leading-relaxed max-w-xl">
-            用遊戲學台語，玩中學、學中玩，輕鬆提升聽、說、拼、讀能力！
-          </p>
-        </div>
-
-        {/* Right Side: Overlay Group of 5 Main Characters scaled up and cropped beautifully at bottom edge */}
-        <div className="relative h-32 md:h-44 w-full md:w-[380px] lg:w-[440px] shrink-0 overflow-visible mt-2 md:mt-0 flex items-end justify-center md:justify-end z-10">
-          <div className="flex items-end gap-1 select-none relative h-full">
-            {/* 1. Dad */}
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              src={charDad}
-              alt="爸爸"
-              className="h-32 md:h-[165px] object-contain filter drop-shadow(2px 2px 4px rgba(0,0,0,0.15)) relative z-10 hover:scale-105 transition-transform duration-200"
-            />
-            {/* 2. Ahui (Girl with headphones) */}
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              src={charAhui}
-              alt="阿輝"
-              className="h-[120px] md:h-[155px] object-contain filter drop-shadow(2px 2px 4px rgba(0,0,0,0.15)) relative -ml-6 z-20 hover:scale-105 transition-transform duration-200"
-            />
-            {/* 3. Aming (Boy in center) */}
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              src={charAming}
-              alt="阿明"
-              className="h-[130px] md:h-[172px] object-contain filter drop-shadow(2px 2px 4px rgba(0,0,0,0.2)) relative -ml-6 z-30 hover:scale-105 transition-transform duration-200"
-            />
-            {/* 4. Mom */}
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              src={charMom}
-              alt="媽媽"
-              className="h-[118px] md:h-[150px] object-contain filter drop-shadow(2px 2px 4px rgba(0,0,0,0.15)) relative -ml-6 z-20 hover:scale-105 transition-transform duration-200"
-            />
-            {/* 5. Grandpa */}
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              src={charGrandpa}
-              alt="阿公"
-              className="h-28 md:h-[138px] object-contain filter drop-shadow(2px 2px 4px rgba(0,0,0,0.15)) relative -ml-6 z-10 hover:scale-105 transition-transform duration-200"
-            />
-          </div>
-        </div>
+      {/* Hero banner */}
+      <div className="rounded-3xl overflow-hidden shadow-sm">
+        <img src={hubHero} alt="互動遊戲｜台語學習樂園" className="w-full h-auto block" />
       </div>
 
       {/* 2. Beautiful contiguous filter tab bar with vertical dividers */}
