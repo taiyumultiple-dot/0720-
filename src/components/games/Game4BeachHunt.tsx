@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Trophy, Search, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
-import { charGrandpa } from '../../assets/images/characters';
-import { game4Hero, oceanScene } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
+import { oceanScene } from '../../assets/images/games';
+import { speakTaiyu } from '../../lib/speech';
 
 interface Spot {
   id: string;
@@ -13,15 +14,15 @@ interface Spot {
 }
 
 const SPOTS: Spot[] = [
-  { id: 'turtle', name: '海龜', tailo: 'hái-ku', x: 17, y: 30 },
+  { id: 'turtle', name: '海龜', tailo: 'hái-ki', x: 17, y: 30 },
   { id: 'crab', name: '貝殼', tailo: 'puè-khak', x: 6, y: 75 },
   { id: 'coral', name: '珊瑚', tailo: 'san-ôo', x: 43, y: 72 },
   { id: 'bottle', name: '浪花', tailo: 'lōng-hue', x: 8, y: 12 },
-  { id: 'boat', name: '燈塔', tailo: 'ting-thah', x: 20, y: 10 },
-  { id: 'gull', name: '海鷗', tailo: 'hái-oo', x: 67, y: 6 },
+  { id: 'boat', name: '燈塔', tailo: 'ting-thâ', x: 20, y: 10 },
+  { id: 'gull', name: '海鷗', tailo: 'hái-kau', x: 67, y: 6 },
 ];
 
-export default function Game4BeachHunt({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game4BeachHunt({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const [found, setFound] = useState<Set<string>>(new Set());
   const [wrongClick, setWrongClick] = useState<{ x: number; y: number } | null>(null);
   const [hints, setHints] = useState(3);
@@ -29,6 +30,12 @@ export default function Game4BeachHunt({ onNext, onHome, onGamesHub, onPhonics }
 
   const done = found.size === SPOTS.length;
   const currentTarget = SPOTS.find((s) => !found.has(s.id));
+
+  useEffect(() => {
+    if (currentTarget && !done) {
+      speakTaiyu(currentTarget.name);
+    }
+  }, [currentTarget?.id, done]);
 
   const handleImgClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!currentTarget) return;
@@ -58,10 +65,17 @@ export default function Game4BeachHunt({ onNext, onHome, onGamesHub, onPhonics }
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charGrandpa}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game4Hero} alt="第4款 海邊生態尋寶" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={4}
+        title="海邊生態尋寶"
+        subtitle="認識海洋生物，找出隱藏在沙灘的寶物吧！"
+        onSpeakQuestion={() => {
+          if (currentTarget) {
+            speakTaiyu(currentTarget.name);
+          }
+        }}
+      />
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
         <span className="flex items-center gap-1.5">

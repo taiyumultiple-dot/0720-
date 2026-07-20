@@ -1,7 +1,7 @@
 import { GameShell } from './GameShell';
-import { charMom } from '../../assets/images/characters';
-import { game3Hero } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
+import { speakTaiyu } from '../../lib/speech';
 
 const QUESTIONS: QuizQuestion[] = [
   {
@@ -56,14 +56,21 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game3BlueField({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game3BlueField({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 150);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charMom}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game3Hero} alt="第3款 藍田小旅行" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={3}
+        title="藍田小旅行"
+        subtitle="探索藍田景點，用台語拍出美麗回憶！"
+        onSpeakQuestion={() => {
+          if (engine.q) {
+            speakTaiyu(engine.q.prompt);
+          }
+        }}
+      />
       <QuizPanel engine={engine} onFinish={onNext} accentColor="#3E6FA8" progressLabel="任務進度" />
     </GameShell>
   );

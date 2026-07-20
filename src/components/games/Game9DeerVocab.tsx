@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { speakTaiyu } from '../../lib/speech';
 import { Trophy, Search, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
-import { charGrandpa } from '../../assets/images/characters';
-import { game9Hero, deerLandscape } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
+import { deerLandscape } from '../../assets/images/games';
 
 interface Spot {
   id: string;
@@ -13,17 +14,17 @@ interface Spot {
 }
 
 const SPOTS: Spot[] = [
-  { id: 'deer', name: '鹿仔', tailo: 'lo̍k-á', x: 10, y: 60 },
+  { id: 'deer', name: '鹿仔', tailo: 'lau-á', x: 10, y: 60 },
   { id: 'grass', name: '草仔', tailo: 'tsháu-á', x: 29, y: 68 },
   { id: 'mountain', name: '山頭', tailo: 'suann-thâu', x: 17, y: 21 },
   { id: 'flower', name: '花仔', tailo: 'hue-á', x: 88, y: 86 },
-  { id: 'rock', name: '石頭', tailo: 'tsio̍h-thâu', x: 47, y: 87 },
+  { id: 'rock', name: '石頭', tailo: 'tsioh-thâu', x: 47, y: 87 },
   { id: 'sky', name: '天空', tailo: 'thiⁿ-khong', x: 82, y: 7 },
   { id: 'sea', name: '海邊', tailo: 'hái-pinn', x: 52, y: 15 },
   { id: 'tree', name: '樹仔', tailo: 'tshiū-á', x: 88, y: 38 },
 ];
 
-export default function Game9DeerVocab({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game9DeerVocab({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const [found, setFound] = useState<Set<string>>(new Set());
   const [wrongClick, setWrongClick] = useState<{ x: number; y: number } | null>(null);
   const [hints, setHints] = useState(3);
@@ -33,6 +34,12 @@ export default function Game9DeerVocab({ onNext, onHome, onGamesHub, onPhonics }
   const remaining = SPOTS.filter((s) => !found.has(s.id));
   const current = SPOTS[activeIdx] && !found.has(SPOTS[activeIdx].id) ? SPOTS[activeIdx] : remaining[0];
   const done = found.size === SPOTS.length;
+
+  useEffect(() => {
+    if (current && !done) {
+      speakTaiyu(current.name);
+    }
+  }, [current?.id, done]);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!current) return;
@@ -63,10 +70,17 @@ export default function Game9DeerVocab({ onNext, onHome, onGamesHub, onPhonics }
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charGrandpa}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game9Hero} alt="第9款 鹿野觀察詞彙配對" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={9}
+        title="鹿野觀察詞彙配對"
+        subtitle="觀察鹿野景點，配對正確的台語詞彙！"
+        onSpeakQuestion={() => {
+          if (current) {
+            speakTaiyu(current.name);
+          }
+        }}
+      />
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
         <span className="flex items-center gap-1.5">
@@ -122,7 +136,10 @@ export default function Game9DeerVocab({ onNext, onHome, onGamesHub, onPhonics }
             {SPOTS.map((s, i) => (
               <li
                 key={s.id}
-                onClick={() => setActiveIdx(i)}
+                onClick={() => {
+                  setActiveIdx(i);
+                  speakTaiyu(s.name);
+                }}
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer ${
                   found.has(s.id)
                     ? 'bg-[#EAF6EC] text-[#4E9B5D]'

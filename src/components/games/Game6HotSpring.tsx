@@ -1,7 +1,7 @@
 import { GameShell } from './GameShell';
-import { charDad } from '../../assets/images/characters';
-import { game6Hero } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
+import { speakTaiyu } from '../../lib/speech';
 
 const QUESTIONS: QuizQuestion[] = [
   {
@@ -46,14 +46,21 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game6HotSpring({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game6HotSpring({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 100);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charDad}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game6Hero} alt="第6款 月夜溫泉對話任務" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={6}
+        title="月夜溫泉對話任務"
+        subtitle="泡湯場景台語對話，完成對話任務！"
+        onSpeakQuestion={() => {
+          if (engine.q) {
+            speakTaiyu(engine.q.prompt);
+          }
+        }}
+      />
       <QuizPanel engine={engine} onFinish={onNext} accentColor="#3E6FA8" progressLabel="章節進度" />
     </GameShell>
   );

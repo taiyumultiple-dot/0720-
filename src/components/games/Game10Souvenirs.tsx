@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { speakTaiyu } from '../../lib/speech';
 import { Trophy, ShoppingCart, RotateCcw, ChevronRight, CheckCircle2, Info } from 'lucide-react';
 import { GameShell } from './GameShell';
-import { charAhui } from '../../assets/images/characters';
+import { GameHeader } from './GameHeader';
 import {
-  game10Hero,
   itemPineapple,
   itemNougat,
   itemTeaegg,
@@ -41,7 +41,7 @@ const PRODUCTS: Product[] = [
 const BUDGET = 1000;
 const SHOPPING_LIST = PRODUCTS.filter((p) => p.required);
 
-export default function Game10Souvenirs({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game10Souvenirs({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const [basket, setBasket] = useState<string[]>([]);
   const [result, setResult] = useState<null | boolean>(null);
 
@@ -74,10 +74,21 @@ export default function Game10Souvenirs({ onNext, onHome, onGamesHub, onPhonics 
   const done = result === true;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charAhui}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game10Hero} alt="第10款 伴手禮採買任務" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={10}
+        title="伴手禮採買任務"
+        subtitle="學會伴手禮台語，完成採買任務！"
+        onSpeakQuestion={() => {
+          const reqs = PRODUCTS.filter((p) => p.required);
+          const remainingReq = reqs.find((p) => !basket.includes(p.id));
+          if (remainingReq) {
+            speakTaiyu("請買" + remainingReq.name);
+          } else {
+            speakTaiyu("伴手禮買好囉！");
+          }
+        }}
+      />
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
         <span className="flex items-center gap-1.5">
@@ -99,7 +110,14 @@ export default function Game10Souvenirs({ onNext, onHome, onGamesHub, onPhonics 
               return (
                 <button
                   key={p.id}
-                  onClick={() => (inBasket ? removeItem(p.id) : addItem(p.id))}
+                  onClick={() => {
+                    if (inBasket) {
+                      removeItem(p.id);
+                    } else {
+                      addItem(p.id);
+                    }
+                    speakTaiyu(p.name);
+                  }}
                   className={`rounded-xl border-2 p-2 flex flex-col items-center gap-1 transition-all ${
                     inBasket ? 'border-[#4E9B5D] bg-[#EAF6EC]' : 'border-[#EFE8D8] bg-white hover:border-[#E4772E]'
                   }`}

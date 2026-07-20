@@ -1,7 +1,7 @@
 import { GameShell } from './GameShell';
-import { charAming } from '../../assets/images/characters';
-import { game2Hero } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
+import { speakTaiyu } from '../../lib/speech';
 
 const QUESTIONS: QuizQuestion[] = [
   {
@@ -61,14 +61,21 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game2NightMarket({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game2NightMarket({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 120);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charAming}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game2Hero} alt="第2款 夜市叫賣大挑戰" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={2}
+        title="夜市叫賣大挑戰"
+        subtitle="聽夜市叫賣台語，成為最強叫賣高手！"
+        onSpeakQuestion={() => {
+          if (engine.q) {
+            speakTaiyu(engine.q.prompt);
+          }
+        }}
+      />
       <QuizPanel engine={engine} onFinish={onNext} accentColor="#C6501F" progressLabel="關卡進度" />
     </GameShell>
   );

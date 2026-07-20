@@ -1,7 +1,7 @@
 import { GameShell } from './GameShell';
-import { charAming } from '../../assets/images/characters';
-import { game7Hero } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
+import { speakTaiyu } from '../../lib/speech';
 
 const QUESTIONS: QuizQuestion[] = [
   {
@@ -10,7 +10,7 @@ const QUESTIONS: QuizQuestion[] = [
     options: [
       { label: '行李提領處', tailo: 'Khìnn-lí thi-líng tshù', correct: false },
       { label: '安檢口', tailo: 'An-kiám-kháu', correct: false },
-      { label: '報到櫃檯', tailo: 'Pò-tò kuī-tâi', correct: true },
+      { label: '報到櫃檯', tailo: 'Pò-tò-kuì-thô', correct: true },
       { label: '登機門口', tailo: 'Tang-ki mn̂g-kháu', correct: false },
     ],
   },
@@ -43,14 +43,21 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game7Airport({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game7Airport({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 90);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charAming}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game7Hero} alt="第7款 機場台語問答" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={7}
+        title="機場台語問答"
+        subtitle="在機場情境中答題，準備你的台語實力！"
+        onSpeakQuestion={() => {
+          if (engine.q) {
+            speakTaiyu(engine.q.prompt);
+          }
+        }}
+      />
       <QuizPanel engine={engine} onFinish={onNext} accentColor="#3E6FA8" progressLabel="配對進度" />
     </GameShell>
   );

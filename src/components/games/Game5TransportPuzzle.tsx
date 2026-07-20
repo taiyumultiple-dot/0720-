@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Trophy, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
-import { charAhui } from '../../assets/images/characters';
+import { GameHeader } from './GameHeader';
+import { speakTaiyu } from '../../lib/speech';
 import {
-  game5Hero,
   vehicleTrain,
   vehicleBike,
   vehiclePlane,
@@ -46,7 +46,7 @@ function buildTilePool(): Tile[] {
   return tiles;
 }
 
-export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game5TransportPuzzle({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const [pool, setPool] = useState<Tile[]>(() => buildTilePool());
   const [picked, setPicked] = useState<Tile[]>([]);
   const [matched, setMatched] = useState<Record<string, [string, string]>>({});
@@ -100,10 +100,20 @@ export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub, onPho
   const score = Object.keys(matched).length * 60;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charAhui}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game5Hero} alt="第5款 交通工具拼拼樂" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={5}
+        title="交通工具拼拼樂"
+        subtitle="認識各種交通工具，拼出正確台語名稱！"
+        onSpeakQuestion={() => {
+          const remaining = VEHICLES.find((v) => !matched[v.id]);
+          if (remaining) {
+            speakTaiyu(remaining.name);
+          } else {
+            speakTaiyu("全部配對成功！");
+          }
+        }}
+      />
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
         <span className="flex items-center gap-1.5">

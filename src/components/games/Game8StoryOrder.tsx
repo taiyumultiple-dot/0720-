@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { speakTaiyu } from '../../lib/speech';
 import { Trophy, RotateCcw, ChevronRight, CheckCircle2, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
-import { charMom } from '../../assets/images/characters';
-import { game8Hero, story1, story2, story3, story4, story5 } from '../../assets/images/games';
+import { GameHeader } from './GameHeader';
+import { story1, story2, story3, story4, story5 } from '../../assets/images/games';
 
 interface Card {
   id: number;
@@ -27,7 +28,7 @@ function shuffled(): Card[] {
   return arr;
 }
 
-export default function Game8StoryOrder({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
+export default function Game8StoryOrder({ onNext, onHome }: { onNext: () => void; onHome?: () => void }) {
   const [pool, setPool] = useState<Card[]>(() => shuffled());
   const [slots, setSlots] = useState<(Card | null)[]>([null, null, null, null, null]);
   const [checked, setChecked] = useState<null | boolean>(null);
@@ -40,6 +41,7 @@ export default function Game8StoryOrder({ onNext, onHome, onGamesHub, onPhonics 
     setSlots(next);
     setPool((prev) => prev.filter((c) => c.id !== card.id));
     setChecked(null);
+    speakTaiyu(card.text);
   };
 
   const removeSlot = (idx: number) => {
@@ -68,10 +70,18 @@ export default function Game8StoryOrder({ onNext, onHome, onGamesHub, onPhonics 
   const done = checked === true;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charMom}>
-      <div className="rounded-3xl overflow-hidden shadow-sm">
-        <img src={game8Hero} alt="第8款 老街故事排序" className="w-full h-auto block" />
-      </div>
+    <GameShell onHome={onHome}>
+      <GameHeader
+        stageNumber={8}
+        title="老街故事排序"
+        subtitle="將老街故事排序，學會時間與事件表達！"
+        onSpeakQuestion={() => {
+          const nextCard = CARDS.find((c) => !slots.some((s) => s?.id === c.id));
+          if (nextCard) {
+            speakTaiyu(nextCard.text);
+          }
+        }}
+      />
 
       <div className="bg-[#FDFBF6] rounded-3xl shadow-lg p-4 md:p-5 flex items-center gap-6 flex-wrap text-sm font-bold text-[#5C5548]">
         <span className="flex items-center gap-1.5">
