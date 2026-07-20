@@ -20,10 +20,11 @@ type Row = {
   bopomofo: string; // 官方對照，無對應則為空字串
   example: string; // 台羅語詞
   hanzi: string;
+  mouthImg?: string; // 官方嘴型示意圖網址（目前只確認 p 這一個）
 };
 
 const ROWS: Row[] = [
-  { group: '唇音', initial: 'p', bopomofo: 'ㄅ', example: 'po-lê', hanzi: '玻璃' },
+  { group: '唇音', initial: 'p', bopomofo: 'ㄅ', example: 'po-lê', hanzi: '玻璃', mouthImg: 'https://tailo.moe.edu.tw/sam/sam1/2-1png/p.png' },
   { group: '唇音', initial: 'ph', bopomofo: 'ㄆ', example: 'phú-phú', hanzi: '殕殕' },
   { group: '唇音', initial: 'b', bopomofo: '', example: 'a-bó', hanzi: '阿母' },
   { group: '唇音', initial: 'm', bopomofo: 'ㄇ', example: 'má-mah', hanzi: '媽媽' },
@@ -191,14 +192,26 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                       {row.initial}
                     </div>
                   </div>
-                  {row.bopomofo && (
-                    <div className="text-center">
-                      <div className="text-xs text-[#8A7355] mb-1">發音近似注意符號</div>
-                      <div className="w-16 h-16 rounded-xl bg-white shadow flex items-center justify-center text-2xl font-black text-[#5C4A2E]">
-                        {row.bopomofo}
+                  <div className="flex items-center gap-4">
+                    {row.bopomofo && (
+                      <div className="text-center">
+                        <div className="text-xs text-[#8A7355] mb-1">發音近似注意符號</div>
+                        <div className="w-16 h-16 rounded-xl bg-white shadow flex items-center justify-center text-2xl font-black text-[#5C4A2E]">
+                          {row.bopomofo}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                    {row.mouthImg && (
+                      <img
+                        src={row.mouthImg}
+                        alt={`${row.initial} 嘴型示意圖`}
+                        className="w-28 h-28 object-contain rounded-xl bg-white shadow p-1"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    )}
+                  </div>
                 </div>
 
                 <div className="border-t border-dashed border-[#D8C49C] my-6" />
