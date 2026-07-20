@@ -23,7 +23,7 @@ const SPOTS: Spot[] = [
   { id: 'tree', name: '樹仔', tailo: 'tshiū-á', x: 88, y: 38 },
 ];
 
-export default function Game9DeerVocab({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
+export default function Game9DeerVocab({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
   const [found, setFound] = useState<Set<string>>(new Set());
   const [wrongClick, setWrongClick] = useState<{ x: number; y: number } | null>(null);
   const [hints, setHints] = useState(3);
@@ -63,7 +63,7 @@ export default function Game9DeerVocab({ onNext, onHome, onGamesHub }: { onNext:
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charGrandpa}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charGrandpa}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game9Hero} alt="第9款 鹿野觀察詞彙配對" className="w-full h-auto block" />
       </div>

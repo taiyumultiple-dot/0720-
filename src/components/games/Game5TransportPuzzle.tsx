@@ -46,7 +46,7 @@ function buildTilePool(): Tile[] {
   return tiles;
 }
 
-export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
+export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
   const [pool, setPool] = useState<Tile[]>(() => buildTilePool());
   const [picked, setPicked] = useState<Tile[]>([]);
   const [matched, setMatched] = useState<Record<string, [string, string]>>({});
@@ -100,7 +100,7 @@ export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub }: { o
   const score = Object.keys(matched).length * 60;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charAhui}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charAhui}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game5Hero} alt="第5款 交通工具拼拼樂" className="w-full h-auto block" />
       </div>

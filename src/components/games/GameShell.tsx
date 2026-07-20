@@ -31,7 +31,15 @@ const SIDEBAR_ITEMS = [
   { icon: iconLinks, title: '相關連結', subtitle: '更多學習資源', key: 'links' },
 ];
 
-function TopNav({ onHome, onGamesHub }: { onHome?: () => void; onGamesHub?: () => void }) {
+function TopNav({
+  onHome,
+  onGamesHub,
+  onPhonics,
+}: {
+  onHome?: () => void;
+  onGamesHub?: () => void;
+  onPhonics?: () => void;
+}) {
   return (
     <header className="flex items-center justify-between px-2 md:px-3 py-3 bg-white/60 backdrop-blur-sm">
       <div className="flex items-center cursor-pointer" onClick={onHome}>
@@ -44,6 +52,7 @@ function TopNav({ onHome, onGamesHub }: { onHome?: () => void; onGamesHub?: () =
           const handlers: Record<string, (() => void) | undefined> = {
             home: onHome,
             games: onGamesHub,
+            phonics: onPhonics,
           };
           return (
             <button
@@ -79,18 +88,20 @@ function TopNav({ onHome, onGamesHub }: { onHome?: () => void; onGamesHub?: () =
   );
 }
 
-function Sidebar() {
+function Sidebar({ onPhonics }: { onPhonics?: () => void }) {
   return (
     <aside className="bg-[#F5F0E4] rounded-3xl p-4 w-56 shrink-0 h-fit">
       <ul className="flex flex-col gap-2.5">
         {SIDEBAR_ITEMS.map((item) => {
-          const active = item.key === 'game';
+          const active = false;
+          const clickable = item.key === 'plan' || item.key === 'initials';
           return (
             <li
               key={item.key}
-              className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 cursor-pointer transition-colors ${
-                active ? 'bg-[#4E9B5D] text-white' : 'bg-white hover:bg-[#FFF9EC]'
-              }`}
+              onClick={clickable ? onPhonics : undefined}
+              className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-colors ${
+                clickable ? 'cursor-pointer' : 'cursor-default opacity-60'
+              } ${active ? 'bg-[#4E9B5D] text-white' : 'bg-white hover:bg-[#FFF9EC]'}`}
             >
               <img src={item.icon} alt="" className="w-9 h-9 rounded-lg object-contain shrink-0" />
               <div className="flex-1 min-w-0">
@@ -115,18 +126,20 @@ export function GameShell({
   children,
   onHome,
   onGamesHub,
+  onPhonics,
   mascotSrc,
 }: {
   children: ReactNode;
   onHome?: () => void;
   onGamesHub?: () => void;
+  onPhonics?: () => void;
   mascotSrc?: string;
 }) {
   return (
     <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4 relative">
-      <TopNav onHome={onHome} onGamesHub={onGamesHub} />
+      <TopNav onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} />
       <div className="flex flex-col lg:flex-row gap-3 md:gap-4 flex-1">
-        <Sidebar />
+        <Sidebar onPhonics={onPhonics} />
         <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4">{children}</div>
       </div>
       {mascotSrc && (
@@ -141,7 +154,15 @@ export function GameShell({
 }
 
 /** Layout used only by the hub page: nav, full width, no sidebar. */
-export function HubShell({ children, onHome }: { children: ReactNode; onHome?: () => void }) {
+export function HubShell({
+  children,
+  onHome,
+  onPhonics,
+}: {
+  children: ReactNode;
+  onHome?: () => void;
+  onPhonics?: () => void;
+}) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#FCEFD8] via-[#F7E6C8] to-[#F3DFC0] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
       {/* Corner decorations matching the reference design */}
@@ -156,7 +177,7 @@ export function HubShell({ children, onHome }: { children: ReactNode; onHome?: (
         className="pointer-events-none select-none hidden lg:block absolute right-0 bottom-0 w-44 xl:w-56 opacity-90 z-0"
       />
       <div className="relative z-10 flex flex-col gap-3 md:gap-4">
-        <TopNav onHome={onHome} />
+        <TopNav onHome={onHome} onPhonics={onPhonics} />
         {children}
       </div>
     </div>

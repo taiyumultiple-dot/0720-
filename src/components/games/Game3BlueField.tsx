@@ -56,11 +56,11 @@ const QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function Game3BlueField({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
+export default function Game3BlueField({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
   const engine = useQuizEngine(QUESTIONS, 150);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charMom}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charMom}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game3Hero} alt="第3款 藍田小旅行" className="w-full h-auto block" />
       </div>

@@ -24,9 +24,11 @@ const TABS: { key: TabKey; label: string; icon: string }[] = [
 export default function GamesHub({
   onSelectGame,
   onHome,
+  onPhonics,
 }: {
   onSelectGame: (key: string) => void;
   onHome?: () => void;
+  onPhonics?: () => void;
 }) {
   const [activeTab, setActiveTab] = useState<TabKey>('all');
 
@@ -36,7 +38,7 @@ export default function GamesHub({
   const rest = showFeatured ? GAMES.slice(1) : filtered;
 
   return (
-    <HubShell onHome={onHome}>
+    <HubShell onHome={onHome} onPhonics={onPhonics}>
       {/* Hero banner */}
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={hubHero} alt="互動遊戲｜台語學習樂園" className="w-full h-auto block" />

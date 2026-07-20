@@ -22,26 +22,27 @@ function App() {
   const goToGame = (key: string) => setView(key as View);
   const goHome = () => setView('home');
   const goHub = () => setView('gamesHub');
+  const goPhonics = () => setView('phonics');
   const goNext = (fromKey: string) => {
     const next = getNextGameKey(fromKey);
     setView(next ? (next as View) : 'gamesHub');
   };
 
-  if (view === 'gamesHub') return <GamesHub onSelectGame={goToGame} onHome={goHome} />;
+  if (view === 'gamesHub') return <GamesHub onSelectGame={goToGame} onHome={goHome} onPhonics={goPhonics} />;
   if (view === 'phonics') return <PhonicsInitials onHome={goHome} />;
 
-  if (view === 'game1') return <Game1FoodMatch onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game1')} />;
-  if (view === 'game2') return <Game2NightMarket onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game2')} />;
-  if (view === 'game3') return <Game3BlueField onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game3')} />;
-  if (view === 'game4') return <Game4BeachHunt onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game4')} />;
-  if (view === 'game5') return <Game5TransportPuzzle onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game5')} />;
-  if (view === 'game6') return <Game6HotSpring onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game6')} />;
-  if (view === 'game7') return <Game7Airport onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game7')} />;
-  if (view === 'game8') return <Game8StoryOrder onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game8')} />;
-  if (view === 'game9') return <Game9DeerVocab onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game9')} />;
-  if (view === 'game10') return <Game10Souvenirs onHome={goHome} onGamesHub={goHub} onNext={() => goNext('game10')} />;
+  if (view === 'game1') return <Game1FoodMatch onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game1')} />;
+  if (view === 'game2') return <Game2NightMarket onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game2')} />;
+  if (view === 'game3') return <Game3BlueField onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game3')} />;
+  if (view === 'game4') return <Game4BeachHunt onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game4')} />;
+  if (view === 'game5') return <Game5TransportPuzzle onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game5')} />;
+  if (view === 'game6') return <Game6HotSpring onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game6')} />;
+  if (view === 'game7') return <Game7Airport onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game7')} />;
+  if (view === 'game8') return <Game8StoryOrder onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game8')} />;
+  if (view === 'game9') return <Game9DeerVocab onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game9')} />;
+  if (view === 'game10') return <Game10Souvenirs onHome={goHome} onGamesHub={goHub} onPhonics={goPhonics} onNext={() => goNext('game10')} />;
 
-  return <HomePage onNavigateGames={() => setView('gamesHub')} onNavigatePhonics={() => setView('phonics')} />;
+  return <HomePage onNavigateGames={goHub} onNavigatePhonics={goPhonics} />;
 }
 
 export default App;

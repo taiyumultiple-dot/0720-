@@ -21,7 +21,7 @@ const SPOTS: Spot[] = [
   { id: 'gull', name: '海鷗', tailo: 'hái-oo', x: 67, y: 6 },
 ];
 
-export default function Game4BeachHunt({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {
+export default function Game4BeachHunt({ onNext, onHome, onGamesHub, onPhonics }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void; onPhonics?: () => void }) {
   const [found, setFound] = useState<Set<string>>(new Set());
   const [wrongClick, setWrongClick] = useState<{ x: number; y: number } | null>(null);
   const [hints, setHints] = useState(3);
@@ -58,7 +58,7 @@ export default function Game4BeachHunt({ onNext, onHome, onGamesHub }: { onNext:
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charGrandpa}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} onPhonics={onPhonics} mascotSrc={charGrandpa}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game4Hero} alt="第4款 海邊生態尋寶" className="w-full h-auto block" />
       </div>

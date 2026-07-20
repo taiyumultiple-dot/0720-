@@ -111,8 +111,16 @@ const SIDEBAR_ITEMS = [
 ];
 
 type Mode = 'grid' | 'detail' | 'practice';
+type Section = 'plan' | 'initials' | 'finals' | 'practice' | 'tone' | 'game' | 'links';
 
-export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
+export default function PhonicsInitials({
+  onHome,
+  onGamesHub,
+}: {
+  onHome?: () => void;
+  onGamesHub?: () => void;
+}) {
+  const [section, setSection] = useState<Section>('initials');
   const [group, setGroup] = useState('唇音');
   const [mode, setMode] = useState<Mode>('grid');
   const [rowIndex, setRowIndex] = useState(0);
@@ -145,9 +153,9 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
         </div>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#5C5548]">
           <span className="cursor-pointer" onClick={onHome}>首頁</span>
-          <span>互動遊戲</span>
-          <span>學習記錄</span>
-          <span>最新消息</span>
+          <span className="cursor-pointer hover:text-[#4E9B5D]" onClick={onGamesHub}>互動遊戲</span>
+          <span className="opacity-50">學習記錄</span>
+          <span className="opacity-50">最新消息</span>
         </nav>
       </header>
 
@@ -156,8 +164,9 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
           {SIDEBAR_ITEMS.map((item) => (
             <div
               key={item.key}
+              onClick={() => setSection(item.key as Section)}
               className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors ${
-                item.key === 'initials' ? 'bg-[#4E9B5D] text-white' : 'text-[#5C5548] hover:bg-[#F0EBDD]'
+                section === item.key ? 'bg-[#4E9B5D] text-white' : 'text-[#5C5548] hover:bg-[#F0EBDD]'
               }`}
             >
               <img src={item.icon} alt="" className="w-5 h-5 object-contain" />
@@ -167,6 +176,22 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
         </aside>
 
         <div className="flex-1 relative pb-24">
+          {section !== 'plan' && section !== 'initials' ? (
+            <div className="bg-[#FBF3E4] border-4 border-[#D8C49C] rounded-3xl p-10 min-h-[420px] flex flex-col items-center justify-center text-center gap-3">
+              <div className="text-4xl">🚧</div>
+              <h2 className="font-black text-lg text-[#5C4A2E]">
+                {SIDEBAR_ITEMS.find((s) => s.key === section)?.title} 建置中
+              </h2>
+              <p className="text-sm text-[#8A7355]">這個功能還在準備中，敬請期待！</p>
+              <button
+                onClick={() => setSection('initials')}
+                className="mt-2 px-5 py-2 rounded-full bg-[#4E9B5D] text-white text-sm font-bold"
+              >
+                先去看聲母學習
+              </button>
+            </div>
+          ) : (
+          <>
           <div className="flex items-end gap-2 mb-0 flex-wrap">
             <div className="bg-[#B98A55] text-white font-black text-lg px-6 py-3 rounded-t-2xl rounded-br-2xl shadow-sm">
               聲母學習
@@ -352,6 +377,8 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
               </div>
             )}
           </div>
+          </>
+          )}
 
           <img
             src={charAhui}
