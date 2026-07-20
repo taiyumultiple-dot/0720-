@@ -9,6 +9,7 @@ import {
   iconTone,
   iconGame,
   iconLinks,
+  logoMark,
 } from '../../assets/images/homepage';
 import { decorPottery, decorFlowers } from '../../assets/images/games';
 
@@ -33,14 +34,8 @@ const SIDEBAR_ITEMS = [
 function TopNav({ onHome }: { onHome?: () => void }) {
   return (
     <header className="flex items-center justify-between px-2 md:px-3 py-3 bg-white/60 backdrop-blur-sm">
-      <div className="flex items-center gap-3 cursor-pointer" onClick={onHome}>
-        <div className="w-11 h-11 rounded-xl bg-[#3E8552] flex items-center justify-center shadow-sm shrink-0">
-          <BookOpen className="w-6 h-6 text-white" strokeWidth={2.2} />
-        </div>
-        <div className="leading-tight">
-          <div className="font-black text-[#2D2A26] text-lg tracking-wide">泰宇出版</div>
-          <div className="text-[11px] text-[#8A8378] tracking-wide">台語互動學習網</div>
-        </div>
+      <div className="flex items-center cursor-pointer" onClick={onHome}>
+        <img src={logoMark} alt="泰宇出版｜台語互動學習網" className="h-8 w-auto" />
       </div>
 
       <nav className="hidden md:flex items-center gap-8">
