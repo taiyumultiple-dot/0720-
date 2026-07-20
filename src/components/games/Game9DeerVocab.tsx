@@ -14,11 +14,11 @@ interface Spot {
 }
 
 const SPOTS: Spot[] = [
-  { id: 'deer', name: '鹿仔', tailo: 'lo̍k-á', x: 10, y: 60 },
+  { id: 'deer', name: '鹿仔', tailo: 'lau-á', x: 10, y: 60 },
   { id: 'grass', name: '草仔', tailo: 'tsháu-á', x: 29, y: 68 },
   { id: 'mountain', name: '山頭', tailo: 'suann-thâu', x: 17, y: 21 },
   { id: 'flower', name: '花仔', tailo: 'hue-á', x: 88, y: 86 },
-  { id: 'rock', name: '石頭', tailo: 'tsio̍h-thâu', x: 47, y: 87 },
+  { id: 'rock', name: '石頭', tailo: 'tsioh-thâu', x: 47, y: 87 },
   { id: 'sky', name: '天空', tailo: 'thiⁿ-khong', x: 82, y: 7 },
   { id: 'sea', name: '海邊', tailo: 'hái-pinn', x: 52, y: 15 },
   { id: 'tree', name: '樹仔', tailo: 'tshiū-á', x: 88, y: 38 },

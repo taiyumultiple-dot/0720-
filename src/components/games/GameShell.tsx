@@ -11,7 +11,7 @@ import {
   iconLinks,
   logoMark,
 } from '../../assets/images/homepage';
-import { decorPottery, decorFlowers } from '../../assets/images/games';
+import OldStreetBackground from './OldStreetBackground';
 
 const NAV_ITEMS = [
   { label: '首頁', icon: Home, key: 'home' },
@@ -143,11 +143,14 @@ function Sidebar() {
 /** Full layout used by every game sub-page: nav + left sidebar + content area. */
 export function GameShell({ children, onHome }: { children: ReactNode; onHome?: () => void }) {
   return (
-    <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
-      <TopNav onHome={onHome} />
-      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 flex-1">
-        <Sidebar />
-        <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4">{children}</div>
+    <div className="relative min-h-screen p-3 md:p-4 flex flex-col gap-3 md:gap-4 overflow-hidden">
+      <OldStreetBackground />
+      <div className="relative z-10 flex flex-col gap-3 md:gap-4 flex-1">
+        <TopNav onHome={onHome} />
+        <div className="flex flex-col lg:flex-row gap-3 md:gap-4 flex-1">
+          <Sidebar />
+          <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4">{children}</div>
+        </div>
       </div>
     </div>
   );
@@ -156,18 +159,9 @@ export function GameShell({ children, onHome }: { children: ReactNode; onHome?: 
 /** Layout used only by the hub page: nav, full width, no sidebar. */
 export function HubShell({ children, onHome }: { children: ReactNode; onHome?: () => void }) {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#FCEFD8] via-[#F7E6C8] to-[#F3DFC0] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
-      <img
-        src={decorPottery}
-        alt=""
-        className="pointer-events-none select-none hidden lg:block absolute left-0 bottom-0 w-40 xl:w-52 opacity-90 z-0"
-      />
-      <img
-        src={decorFlowers}
-        alt=""
-        className="pointer-events-none select-none hidden lg:block absolute right-0 bottom-0 w-44 xl:w-56 opacity-90 z-0"
-      />
-      <div className="relative z-10 flex flex-col gap-3 md:gap-4">
+    <div className="relative min-h-screen p-3 md:p-4 flex flex-col gap-3 md:gap-4 overflow-hidden">
+      <OldStreetBackground />
+      <div className="relative z-10 flex flex-col gap-3 md:gap-4 flex-1">
         <TopNav onHome={onHome} />
         {children}
       </div>

@@ -629,9 +629,9 @@ const PHONIC_DETAILS_INITIALS: Record<string, PhonicDetail> = {
   'ph': {
     symbol: 'ph',
     bopomofo: 'ㄆ',
-    chant: 'ph ph ph 殕殕的 ph',
+    chant: 'ph ph ph 碎碎的 ph',
     exampleWords: [
-      { hanzi: '殕殕', tailo: 'phú-phú', english: 'Shattered' },
+      { hanzi: '碎碎', tailo: 'phú-phú', english: 'Shattered' },
       { hanzi: '歹人', tailo: 'pháinn-lâng', english: 'Bad guy' },
       { hanzi: '皮包', tailo: 'phuê-á', english: 'Leather bag' }
     ],
@@ -689,9 +689,9 @@ const PHONIC_DETAILS_INITIALS: Record<string, PhonicDetail> = {
   'l': {
     symbol: 'l',
     bopomofo: 'ㄌ',
-    chant: 'l l l 囉嗦的 l',
+    chant: 'l l l 囉唆的 l',
     exampleWords: [
-      { hanzi: '囉嗦', tailo: 'lo-so', english: 'Chatter' },
+      { hanzi: '囉唆', tailo: 'lo-so', english: 'Chatter' },
       { hanzi: '人來', tailo: 'lâng-lâi', english: 'People come' },
       { hanzi: '老師', tailo: 'lāu-sū', english: 'Teacher' }
     ],
@@ -737,10 +737,10 @@ const PHONIC_DETAILS_INITIALS: Record<string, PhonicDetail> = {
   'ng': {
     symbol: 'ng',
     bopomofo: '兀',
-    chant: 'ng ng ng 雅氣的 ng',
+    chant: 'ng ng ng 牙齒的 ng',
     exampleWords: [
-      { hanzi: '雅氣', tailo: 'ngá-khì', english: 'Elegant' },
-      { hanzi: '雅量', tailo: 'ngá-liōng', english: 'Tolerance' },
+      { hanzi: '牙齒', tailo: 'ngá-khí', english: 'Tooth' },
+      { hanzi: '雅量', tailo: 'ngá-suānn', english: 'Tolerance' },
       { hanzi: '雅子', tailo: 'ngá-tsí', english: 'Princess' }
     ],
     illustration: 'tooth',
@@ -775,9 +775,9 @@ const PHONIC_DETAILS_INITIALS: Record<string, PhonicDetail> = {
     bopomofo: 'ㄘ / ㄑ',
     chant: 'tsh tsh tsh 菜頭的 tsh',
     exampleWords: [
-      { hanzi: '菜頭', tailo: 'tshài-thâu', english: 'Radish' },
+      { hanzi: '菜頭', tailo: 'tshai-thâu', english: 'Radish' },
       { hanzi: '車讚', tailo: 'tshia-tsán', english: 'Car praise' },
-      { hanzi: '田園', tailo: 'tshân-hn̂g', english: 'Fields' }
+      { hanzi: '田園', tailo: 'tshân-nî', english: 'Fields' }
     ],
     illustration: 'radish',
     mouthType: 'teeth_air'
@@ -787,7 +787,7 @@ const PHONIC_DETAILS_INITIALS: Record<string, PhonicDetail> = {
     bopomofo: 'ㄙ / ㄒ',
     chant: 's s s 雪文的 s',
     exampleWords: [
-      { hanzi: '雪文', tailo: 'sap-bûn', english: 'Soap' },
+      { hanzi: '雪文', tailo: 'sa-bûn', english: 'Soap' },
       { hanzi: '寫字', tailo: 'siá-jī', english: 'Write' },
       { hanzi: '生日', tailo: 'senn-li̍t', english: 'Birthday' }
     ],
@@ -864,7 +864,7 @@ const PHONIC_DETAILS_FINALS: Record<string, PhonicDetail> = {
     exampleWords: [
       { hanzi: '蚵仔', tailo: 'ô-á', english: 'Oyster' },
       { hanzi: '刀仔', tailo: 'to-á', english: 'Knife' },
-      { hanzi: '囉嗦', tailo: 'lo-so', english: 'Chatter' }
+      { hanzi: '囉唆', tailo: 'lo-so', english: 'Chatter' }
     ],
     illustration: 'oyster',
     mouthType: 'open_rounded'
@@ -1939,7 +1939,7 @@ export default function PhonicsPage({
                             group: '唇音',
                             items: [
                               { symbol: 'p', tailo: 'po-lê', hanzi: '玻璃' },
-                              { symbol: 'ph', tailo: 'phú-phú', hanzi: '殕殕' },
+                              { symbol: 'ph', tailo: 'phú-phú', hanzi: '碎碎' },
                               { symbol: 'b', tailo: 'a-bó', hanzi: '阿母' },
                               { symbol: 'm', tailo: 'má-máh', hanzi: '媽媽' }
                             ]
@@ -1950,7 +1950,7 @@ export default function PhonicsPage({
                               { symbol: 't', tailo: 'to-á', hanzi: '刀仔' },
                               { symbol: 'th', tailo: 'thô-á', hanzi: '桃仔' },
                               { symbol: 'n', tailo: 'niau-á', hanzi: '貓仔' },
-                              { symbol: 'l', tailo: 'lo-so', hanzi: '囉嗦' }
+                              { symbol: 'l', tailo: 'lo-so', hanzi: '囉唆' }
                             ]
                           },
                           {
@@ -1959,15 +1959,15 @@ export default function PhonicsPage({
                               { symbol: 'k', tailo: 'ko-ko', hanzi: '哥哥' },
                               { symbol: 'kh', tailo: 'khì-tshia', hanzi: '汽車' },
                               { symbol: 'g', tailo: 'gô-á', hanzi: '鵝仔' },
-                              { symbol: 'ng', tailo: 'ngá-khì', hanzi: '雅氣' }
+                              { symbol: 'ng', tailo: 'ngá-khí', hanzi: '牙齒' }
                             ]
                           },
                           {
                             group: '齒齦音',
                             items: [
                               { symbol: 'ts', tailo: 'tsu-pau', hanzi: '書包' },
-                              { symbol: 'tsh', tailo: 'tshài-thâu', hanzi: '菜頭' },
-                              { symbol: 's', tailo: 'sap-bûn', hanzi: '雪文' },
+                              { symbol: 'tsh', tailo: 'tshai-thâu', hanzi: '菜頭' },
+                              { symbol: 's', tailo: 'sa-bûn', hanzi: '雪文' },
                               { symbol: 'j', tailo: 'ji̍t-thâu', hanzi: '日頭' }
                             ]
                           },
@@ -3683,8 +3683,8 @@ export default function PhonicsPage({
                             { hanzi: '代誌', tailo: 'tāi-tsì' },
                             { hanzi: '媠仔', tailo: 'suí-á' },
                             { hanzi: '玻璃', tailo: 'po-lê' },
-                            { hanzi: '菜頭', tailo: 'tshài-thâu' },
-                            { hanzi: '雪文', tailo: 'sap-bûn' }
+                            { hanzi: '菜頭', tailo: 'tshai-thâu' },
+                            { hanzi: '雪文', tailo: 'sa-bûn' }
                           ]
                         },
                         {
