@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trophy, RotateCcw, ChevronRight, CheckCircle2, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charMom } from '../../assets/images/characters';
 import { game8Hero, story1, story2, story3, story4, story5 } from '../../assets/images/games';
 
 interface Card {
@@ -67,7 +68,7 @@ export default function Game8StoryOrder({ onNext, onHome, onGamesHub }: { onNext
   const done = checked === true;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charMom}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game8Hero} alt="第8款 老街故事排序" className="w-full h-auto block" />
       </div>

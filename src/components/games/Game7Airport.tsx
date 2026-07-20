@@ -1,4 +1,5 @@
 import { GameShell } from './GameShell';
+import { charAming } from '../../assets/images/characters';
 import { game7Hero } from '../../assets/images/games';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
 
@@ -46,7 +47,7 @@ export default function Game7Airport({ onNext, onHome, onGamesHub }: { onNext: (
   const engine = useQuizEngine(QUESTIONS, 90);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charAming}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game7Hero} alt="第7款 機場台語問答" className="w-full h-auto block" />
       </div>

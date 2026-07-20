@@ -1,4 +1,5 @@
 import { GameShell } from './GameShell';
+import { charDad } from '../../assets/images/characters';
 import { game6Hero } from '../../assets/images/games';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
 
@@ -49,7 +50,7 @@ export default function Game6HotSpring({ onNext, onHome, onGamesHub }: { onNext:
   const engine = useQuizEngine(QUESTIONS, 100);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charDad}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game6Hero} alt="第6款 月夜溫泉對話任務" className="w-full h-auto block" />
       </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trophy, Search, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charGrandpa } from '../../assets/images/characters';
 import { game4Hero, oceanScene } from '../../assets/images/games';
 
 interface Spot {
@@ -57,7 +58,7 @@ export default function Game4BeachHunt({ onNext, onHome, onGamesHub }: { onNext:
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charGrandpa}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game4Hero} alt="第4款 海邊生態尋寶" className="w-full h-auto block" />
       </div>

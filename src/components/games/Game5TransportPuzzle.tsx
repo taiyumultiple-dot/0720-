@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trophy, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charAhui } from '../../assets/images/characters';
 import {
   game5Hero,
   vehicleTrain,
@@ -99,7 +100,7 @@ export default function Game5TransportPuzzle({ onNext, onHome, onGamesHub }: { o
   const score = Object.keys(matched).length * 60;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charAhui}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game5Hero} alt="第5款 交通工具拼拼樂" className="w-full h-auto block" />
       </div>

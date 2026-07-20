@@ -1,4 +1,5 @@
 import { GameShell } from './GameShell';
+import { charAming } from '../../assets/images/characters';
 import { game2Hero } from '../../assets/images/games';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
 
@@ -64,7 +65,7 @@ export default function Game2NightMarket({ onNext, onHome, onGamesHub }: { onNex
   const engine = useQuizEngine(QUESTIONS, 120);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charAming}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game2Hero} alt="第2款 夜市叫賣大挑戰" className="w-full h-auto block" />
       </div>

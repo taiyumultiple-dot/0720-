@@ -115,18 +115,27 @@ export function GameShell({
   children,
   onHome,
   onGamesHub,
+  mascotSrc,
 }: {
   children: ReactNode;
   onHome?: () => void;
   onGamesHub?: () => void;
+  mascotSrc?: string;
 }) {
   return (
-    <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4">
+    <div className="min-h-screen bg-[#FBF7EE] p-3 md:p-4 flex flex-col gap-3 md:gap-4 relative">
       <TopNav onHome={onHome} onGamesHub={onGamesHub} />
       <div className="flex flex-col lg:flex-row gap-3 md:gap-4 flex-1">
         <Sidebar />
         <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4">{children}</div>
       </div>
+      {mascotSrc && (
+        <img
+          src={mascotSrc}
+          alt="陪讀角色"
+          className="hidden xl:block fixed bottom-2 right-2 w-24 2xl:w-28 drop-shadow-md pointer-events-none select-none z-10"
+        />
+      )}
     </div>
   );
 }

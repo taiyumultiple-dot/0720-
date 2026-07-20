@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Lightbulb, RotateCcw, ChevronRight, Volume2, Trophy, Clock } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charDad } from '../../assets/images/characters';
 import {
   game1Hero,
   food_baw,
@@ -122,7 +123,7 @@ export default function Game1FoodMatch({
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charDad}>
       <div className="rounded-3xl overflow-hidden shadow-sm relative">
         <img src={game1Hero} alt="第1關 老街台語美食配對" className="w-full h-auto block" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">

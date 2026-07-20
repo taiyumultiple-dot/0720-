@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trophy, Search, Lightbulb, RotateCcw, ChevronRight, Volume2 } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charGrandpa } from '../../assets/images/characters';
 import { game9Hero, deerLandscape } from '../../assets/images/games';
 
 interface Spot {
@@ -62,7 +63,7 @@ export default function Game9DeerVocab({ onNext, onHome, onGamesHub }: { onNext:
   };
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charGrandpa}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game9Hero} alt="第9款 鹿野觀察詞彙配對" className="w-full h-auto block" />
       </div>

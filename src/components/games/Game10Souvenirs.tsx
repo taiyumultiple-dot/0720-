@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trophy, ShoppingCart, RotateCcw, ChevronRight, CheckCircle2, Info } from 'lucide-react';
 import { GameShell } from './GameShell';
+import { charAhui } from '../../assets/images/characters';
 import {
   game10Hero,
   itemPineapple,
@@ -73,7 +74,7 @@ export default function Game10Souvenirs({ onNext, onHome, onGamesHub }: { onNext
   const done = result === true;
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charAhui}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game10Hero} alt="第10款 伴手禮採買任務" className="w-full h-auto block" />
       </div>

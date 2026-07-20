@@ -1,4 +1,5 @@
 import { GameShell } from './GameShell';
+import { charMom } from '../../assets/images/characters';
 import { game3Hero } from '../../assets/images/games';
 import { QuizPanel, useQuizEngine, type QuizQuestion } from './QuizPanel';
 
@@ -59,7 +60,7 @@ export default function Game3BlueField({ onNext, onHome, onGamesHub }: { onNext:
   const engine = useQuizEngine(QUESTIONS, 150);
 
   return (
-    <GameShell onHome={onHome} onGamesHub={onGamesHub}>
+    <GameShell onHome={onHome} onGamesHub={onGamesHub} mascotSrc={charMom}>
       <div className="rounded-3xl overflow-hidden shadow-sm">
         <img src={game3Hero} alt="第3款 藍田小旅行" className="w-full h-auto block" />
       </div>
