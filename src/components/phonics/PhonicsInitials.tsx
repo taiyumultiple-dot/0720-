@@ -187,10 +187,10 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
             ))}
           </div>
 
-          <div className="bg-[#FBF3E4] border-4 border-[#D8C49C] rounded-3xl rounded-tl-none p-6 md:p-10 min-h-[420px] relative">
+          <div className="bg-[#FBF3E4] border-4 border-[#D8C49C] rounded-3xl rounded-tl-none p-4 md:p-5 min-h-[420px] relative">
             {mode === 'grid' && (
               <>
-                <div className="flex items-center justify-center gap-2 mb-8">
+                <div className="flex items-center justify-center gap-2 mb-5">
                   <span style={{ color: activeColor }}>★</span>
                   <h2 className="font-black text-xl" style={{ color: activeColor }}>
                     {group}
@@ -216,7 +216,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
 
             {mode === 'detail' && row && (
               <div>
-                <div className="flex items-start justify-between flex-wrap gap-6">
+                <div className="flex items-start justify-between flex-wrap gap-4">
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => speak(row.initial)}
@@ -224,7 +224,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                     >
                       <Volume2 className="w-5 h-5" />
                     </button>
-                    <div className="text-7xl font-black" style={{ color: activeColor }}>
+                    <div className="text-6xl font-black" style={{ color: activeColor }}>
                       {row.initial}
                     </div>
                   </div>
@@ -257,7 +257,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                   </div>
                 </div>
 
-                <div className="border-t border-dashed border-[#D8C49C] my-6" />
+                <div className="border-t border-dashed border-[#D8C49C] my-5" />
 
                 <div className="mb-2 text-sm font-black" style={{ color: activeColor }}>
                   ★ 口訣練習
@@ -270,7 +270,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                   <span className="text-sm font-normal text-[#8A7355] ml-3">（{row.example}）</span>
                 </button>
 
-                <div className="flex items-center justify-between mt-10 flex-wrap gap-3">
+                <div className="flex items-center justify-between mt-6 flex-wrap gap-3">
                   <button
                     disabled={rowIndex === 0}
                     onClick={() => setRowIndex((i) => i - 1)}
@@ -306,7 +306,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                 <div className="inline-block bg-[#E96B5A] text-white text-xs font-black px-4 py-1.5 rounded-full mb-6">
                   聲母小練習
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex flex-col md:flex-row items-center gap-5">
                   <div className="text-center shrink-0">
                     <div className="text-6xl font-black text-[#5C4A2E]">{row.initial}</div>
                     <div className="text-sm text-[#8A7355] mt-1">（{row.group}）</div>
@@ -325,7 +325,7 @@ export default function PhonicsInitials({ onHome }: { onHome?: () => void }) {
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-10">
+                <div className="flex items-center justify-between mt-6">
                   <button
                     onClick={() => setMode('detail')}
                     className="flex items-center gap-1 px-4 py-2.5 rounded-full bg-[#F1E4C8] text-[#5C4A2E] font-bold text-sm"
