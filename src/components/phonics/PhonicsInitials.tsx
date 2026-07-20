@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Home, BookOpen, Gamepad2, ClipboardList, MessageCircle, Volume2 } from 'lucide-react';
 import { logoMark } from '../../assets/images/homepage';
 
-// 資料來源：教育部《臺灣台語羅馬字拼音方案》(95年10月14日公告) 聲母表，
-// 例詞經與教育部臺灣台語常用詞辭典交叉核對，修正原本「媽媽」誤植的 máh → má。
+// 資料型別定義
 type Row = {
   group: string;
   groupLabel: string;
@@ -13,15 +12,26 @@ type Row = {
   hanzi: string;
 };
 
+// 資料來源：教育部《臺灣台語羅馬字拼音教學網》官方聲母表
+// https://tailo.moe.edu.tw/pin1.html （逐筆核對，含羅馬字與漢字用字）
 const ROWS: Row[] = [
   { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'p', example: 'po-lê', hanzi: '玻璃' },
-  { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'ph', example: 'phú-phú', hanzi: '碎碎' },
+  { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'ph', example: 'phú-phú', hanzi: '殕殕' },
   { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'b', example: 'a-bó', hanzi: '阿母' },
-  { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'm', example: 'má-má', hanzi: '媽媽' },
+  { group: 'labial', groupLabel: '唇音', emoji: '👄', initial: 'm', example: 'má-mah', hanzi: '媽媽' },
   { group: 'alveolar', groupLabel: '舌尖音', emoji: '👅', initial: 't', example: 'to-á', hanzi: '刀仔' },
   { group: 'alveolar', groupLabel: '舌尖音', emoji: '👅', initial: 'th', example: 'thô-á', hanzi: '桃仔' },
   { group: 'alveolar', groupLabel: '舌尖音', emoji: '👅', initial: 'n', example: 'niau-á', hanzi: '貓仔' },
-  { group: 'alveolar', groupLabel: '舌尖音', emoji: '👅', initial: 'l', example: 'lô-so', hanzi: '囉唆' },
+  { group: 'alveolar', groupLabel: '舌尖音', emoji: '👅', initial: 'l', example: 'lo-so', hanzi: '囉嗦' },
+  { group: 'velar', groupLabel: '舌根音', emoji: '🫦', initial: 'k', example: 'kî-kuài', hanzi: '奇怪' },
+  { group: 'velar', groupLabel: '舌根音', emoji: '🫦', initial: 'kh', example: 'khe-kháu', hanzi: '溪口' },
+  { group: 'velar', groupLabel: '舌根音', emoji: '🫦', initial: 'g', example: 'gí-giân', hanzi: '語言' },
+  { group: 'velar', groupLabel: '舌根音', emoji: '🫦', initial: 'ng', example: 'ngá-khì', hanzi: '雅氣' },
+  { group: 'glottal', groupLabel: '喉音', emoji: '🗣️', initial: 'h', example: 'hi-hua', hanzi: '虛華' },
+  { group: 'sibilant', groupLabel: '齒音', emoji: '🦷', initial: 'ts', example: 'tsá-tsá', hanzi: '早早' },
+  { group: 'sibilant', groupLabel: '齒音', emoji: '🦷', initial: 'tsh', example: 'tsha-tshò', hanzi: '差錯' },
+  { group: 'sibilant', groupLabel: '齒音', emoji: '🦷', initial: 's', example: 'só-sî', hanzi: '鎖匙' },
+  { group: 'sibilant', groupLabel: '齒音', emoji: '🦷', initial: 'j', example: 'jû-hô', hanzi: '如何' },
 ];
 
 function speak(text: string) {
