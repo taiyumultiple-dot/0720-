@@ -12,12 +12,12 @@ interface Spot {
 }
 
 const SPOTS: Spot[] = [
-  { id: 'turtle', name: '海龜', tailo: 'hái-ki', x: 17, y: 30 },
+  { id: 'turtle', name: '海龜', tailo: 'hái-ku', x: 17, y: 30 },
   { id: 'crab', name: '貝殼', tailo: 'puè-khak', x: 6, y: 75 },
   { id: 'coral', name: '珊瑚', tailo: 'san-ôo', x: 43, y: 72 },
   { id: 'bottle', name: '浪花', tailo: 'lōng-hue', x: 8, y: 12 },
-  { id: 'boat', name: '燈塔', tailo: 'ting-thâ', x: 20, y: 10 },
-  { id: 'gull', name: '海鷗', tailo: 'hái-kau', x: 67, y: 6 },
+  { id: 'boat', name: '燈塔', tailo: 'ting-thah', x: 20, y: 10 },
+  { id: 'gull', name: '海鷗', tailo: 'hái-oo', x: 67, y: 6 },
 ];
 
 export default function Game4BeachHunt({ onNext, onHome, onGamesHub }: { onNext: () => void; onHome?: () => void; onGamesHub?: () => void }) {

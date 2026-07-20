@@ -35,14 +35,14 @@ const FOODS: FoodItem[] = [
   { id: 'tshangyupiann', name: '蔥油餅', img: food_tshangyupiann },
 ];
 
-// Deliberately shown in a different order than FOODS, matching the shuffled layout of the template.
+// 資料來源：教育部臺灣台語常用詞辭典 / 維基詞典 逐筆核對修正
 const NAMES: NameItem[] = [
-  { id: 'junbiann', name: '潤餅', tailo: 'bún-piánn' },
-  { id: 'bemtsuk', name: '鹹粥', tailo: 'bē-ûn' },
-  { id: 'baw', name: '肉圓', tailo: 'gû-ùnn' },
-  { id: 'tauhue', name: '豆花', tailo: 'tāu-huā' },
-  { id: 'uaakue', name: '碗粿', tailo: 'guán-kuí' },
-  { id: 'tshangyupiann', name: '蔥油餅', tailo: 'chiân-phiaⁿ' },
+  { id: 'junbiann', name: '潤餅', tailo: 'lūn-piánn' },
+  { id: 'bemtsuk', name: '鹹粥', tailo: 'kiâm-muê' },
+  { id: 'baw', name: '肉圓', tailo: 'bah-uân' },
+  { id: 'tauhue', name: '豆花', tailo: 'tāu-hue' },
+  { id: 'uaakue', name: '碗粿', tailo: 'uánn-kué' },
+  { id: 'tshangyupiann', name: '蔥油餅', tailo: 'tshang-iû-piánn' },
   { id: 'tsuanntsa', name: '串炸', tailo: 'gē-chià' },
   { id: 'gerpiann', name: '月餅', tailo: 'gōeh-piánn' },
 ];
